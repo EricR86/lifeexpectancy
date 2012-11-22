@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Life Expectancy Calculator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Calculates your life left based on average life expectancy values" />
+        <meta name="keywords" content="life expectancy,life,life left,expectancy,mortality" >
+        
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="quoteBox">
+                <blockquote>{{comment_text}}</blockquote>
+                <p id="commentBy">
+                    - <span id="commentAuthor">{{comment_author}}</span>{{comment_context}} <a href="{{video_url}}">{{video_title}}</a>
+                </p>
+                <div id="options">
+                    {% if comment_is_response %}
+                    <a id="next" href="{{comment_original_link}}">See original comment</a>
+                    {% endif %}
+                    <a id="next" href="/">Next</a>
+                </div>
+            </div>
+            <div id="about">
+                <p>
+                    All quotations are randomly selected from <a href="http://www.youtube.com">YouTube</a>'s
+                    current most popular videos.
+                </p>
+                <p>
+                    None of the comments are edited by this site.
+                </p>
+                <a id="permalink" href="/permalink/{{video_id}}/{{comment_id}}/">permalink</a>
+            </div>
+        </div>
+
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="{{STATIC_URL}}scripts/quote.js"></script> -->
+    </body>
+</html>

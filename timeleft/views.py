@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.template import RequestContext
 from django.http import Http404
+from django.shortcuts import render_to_response
 
 from models import LifeExpectancy
 
@@ -7,7 +8,16 @@ import json
 import urllib2
 from datetime import date, timedelta
 
+def main(request):
+    context_dict = {}
+
+    return render_to_response('main.html',
+                              context_dict,
+                              context_instance=RequestContext(request))
+
+
 def life_calculation(request, country_code, year, month, day):
+    context_dict = {}
     # If we don't have the country in the database, cache all the results
     if LifeExpectancy.objects.filter(country_code = country_code).exists() == False:
         if load_country(country_code) == False:
@@ -45,12 +55,16 @@ def life_calculation(request, country_code, year, month, day):
     remaining_days = remaining_time.days;
     percentage_left = remaining_days/days_expected
 
-    return HttpResponse("Die Day: %d, %d, %d\r\nRemaining Days: %d\r\nLife Left: %.1f" 
-        % (die_date.year, die_date.month, die_date.day, 
-            remaining_days,
-            percentage_left * 100
-        )
-    )
+    #return HttpResponse("Die Day: %d, %d, %d\r\nRemaining Days: %d\r\nLife Left: %.1f" 
+    #    % (die_date.year, die_date.month, die_date.day, 
+    #        remaining_days,
+    #        percentage_left * 100
+    #    )
+    #)
+
+    return render_to_response('results.html',
+                              context_dict,
+                              context_instance=RequestContext(request))
 
        
 def load_new_expectancy(country_code, year):

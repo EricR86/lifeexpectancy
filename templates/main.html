@@ -1,8 +1,13 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Life left</title>
+        <title>Life Expectancy Calculator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Calculates your life left based on average life expectancy values" />
+        <meta name="keywords" content="life expectancy,life,life left,expectancy,mortality" >
+        
         <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
     </head>
     <body>
         <h1>Life expectancy calculator</h1>
@@ -22,7 +27,12 @@
         </form>
         <a id="calculate_link" href="">Calculate</a>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script src="/static/main.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+        <script src="{{STATIC_URL}}js/main.js"></script>
+
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="{{STATIC_URL}}scripts/quote.js"></script> -->
+
     </body>
 </html>
+
