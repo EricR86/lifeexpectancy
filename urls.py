@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'lifeleft.views.home', name='home'),
     #url(r'^lifeleft/', include('lifeleft.foo.urls')),
     url(r'^$', 'timeleft.views.main'),
-    url(r'^(?P<country_code>\w+)/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/',
-        'timeleft.views.life_calculation'),
+    #url(r'^(?P<country_code>\w+)/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/',
+    #    'timeleft.views.life_calculation'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
