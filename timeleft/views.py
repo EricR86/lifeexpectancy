@@ -3,6 +3,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 
 #from models import LifeExpectancy
+from models import LifeTableEntry
 
 import json
 import urllib2
@@ -12,6 +13,52 @@ def main(request):
     context_dict = {}
 
     return render_to_response('main.html',
+                              context_dict,
+                              context_instance=RequestContext(request))
+
+
+def show_results(request, country, gender, birth_year, birth_month, birth_day):
+    context_dict = {}
+
+    # Calculate the age given the birthday
+    age = 0
+    birthday = date(int(birth_year), int(birth_month), int(birth_day))
+    # First calc the difference in years
+    today = date.today()
+    age = today.year - birthday.year
+    # If today's current month and day is before the birthday, subtract 1 from
+    # the age (we haven't hit this year's birthday)
+    if today.month <= birthday.month and today.day < birthday.day:
+        age -= 1
+
+    gender = gender.capitalize()
+    country = country.capitalize()
+
+    # Lookup the projected life left based on country, gender, and age
+    results = LifeTableEntry.objects.filter(
+            country = country,
+            is_male = (gender == 'M'),
+            age = age,
+    )
+
+    if results.exists() == False:
+        raise Http404
+
+    life_data = results[0]
+
+    # Calculate the est date of death from years remaining past the birthday
+    # Get years remaining and covert into days remaining
+    years_remaining = life_data.remaining_years_left
+    days_remaining = int(round(years_remaining * 365.242199))
+    # Add to birthday
+    die_date = birthday + timedelta(days=days_remaining)
+
+    # Display results 
+    context_dict['life_data'] = life_data
+    context_dict['days_remaining'] = days_remaining
+    context_dict['die_date'] = die_date
+    # (probability, remaining years left, rough days left,  rough est date of death)
+    return render_to_response('results.html',
                               context_dict,
                               context_instance=RequestContext(request))
 

@@ -10,30 +10,23 @@
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main.css">
     </head>
     <body>
-        <div id="container">
-            <div id="quoteBox">
-                <blockquote>{{comment_text}}</blockquote>
-                <p id="commentBy">
-                    - <span id="commentAuthor">{{comment_author}}</span>{{comment_context}} <a href="{{video_url}}">{{video_title}}</a>
-                </p>
-                <div id="options">
-                    {% if comment_is_response %}
-                    <a id="next" href="{{comment_original_link}}">See original comment</a>
-                    {% endif %}
-                    <a id="next" href="/">Next</a>
-                </div>
-            </div>
-            <div id="about">
-                <p>
-                    All quotations are randomly selected from <a href="http://www.youtube.com">YouTube</a>'s
-                    current most popular videos.
-                </p>
-                <p>
-                    None of the comments are edited by this site.
-                </p>
-                <a id="permalink" href="/permalink/{{video_id}}/{{comment_id}}/">permalink</a>
-            </div>
-        </div>
+        <p>{{life_data.country}}</p>
+        <p>{{life_data.year_updated}}</p>
+
+        {% if life_data.is_male %}
+        <p>Male</p>
+        {% else %}
+        <p>Female</p>
+        {% endif %}
+
+        <p>Current age: {{life_data.age}}</p>
+        <p>Probability of death before next birthday:
+        {{life_data.probability_of_death_before_next_birthday}}</p>
+        <p>Years left: {{life_data.remaining_years_left}}</p>
+
+        <p>Estimates:</p>
+        <p>Days Remaining: {{days_remaining}}</p>
+        <p>Est Date of Death: {{die_date}}</p>
 
         <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
         <!-- <script type="text/javascript" src="{{STATIC_URL}}scripts/quote.js"></script> -->

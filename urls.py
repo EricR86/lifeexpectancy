@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'lifeleft.views.home', name='home'),
     #url(r'^lifeleft/', include('lifeleft.foo.urls')),
     url(r'^$', 'timeleft.views.main'),
+    url(r'^(?P<country>\w+)/(?P<gender>[MmFf])/(?P<birth_year>\d+)/(?P<birth_month>\d+)/(?P<birth_day>\d+)/',
+        'timeleft.views.show_results'),
     #url(r'^(?P<country_code>\w+)/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/',
     #    'timeleft.views.life_calculation'),
 
