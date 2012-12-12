@@ -4,11 +4,32 @@ $(function () {
     var months = ["January", "February", "March", "April", "May",
                 "June", "July", "August", "September", "October",
                 "November", "December"];
+
+    countries_request = $.ajax({
+         type: "GET",
+         url: "countries/",
+         dataType: "json",
+         // success : function(data) {
+         //      alert(data);
+         // }
+    }).done(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            $("#country").append("<option>" + data[i].fields["country"] + "</option>");
+        }
+    });
+
+     // countries_request.done(function(msg) {
+     //    alert("done!", msg);
+     // });
     
+    // $("#country").append(function (index, html) {
+    // });
+
     $("#birth_year").append(function (index, html) {
         //Create a list of birth years to insert in the drop down box
         var str = "",
-            newest_year = 2012,
+            today = new Date(),
+            newest_year = today.getFullYear(),
             num_years = 112,
             current_year = newest_year;
         
@@ -61,7 +82,7 @@ $(function () {
     }
     
     function update_birthday_url() {
-        $("#calculate_link").attr("href", get_birthday_url());
+        $("#results_link").attr("href", get_birthday_url());
     }
     
     update_birthday_url();

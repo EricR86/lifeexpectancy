@@ -68,3 +68,34 @@ def update_lifetables():
                 break
 
     return
+
+def delete_duplicate_tables():
+    # Iterate through the entire list of life tables
+    life_tables = LifeTableEntry.objects.filter(age=0)
+    # For each life table
+    for life_table in life_tables:
+
+        print "Checking life table of %s %d %s" % \
+            (life_table.country, 
+            life_table.year_updated, 
+            life_table.get_gender_char())
+            
+        # Filter a query by the exact same parameters of the life_table
+        query = LifeTableEntry.objects.filter(
+            country = life_table.country,
+            year_updated = life_table.year_updated,
+            is_male = life_table.is_male,
+            age = 0,
+        )
+        # If there is more than 1 entry per life table
+        if len(query) > 1:
+            # Delete the 2nd entry from each life table
+            print "Duplicate found, removing extra entries from table"
+            life_table_entries = LifeTableEntry.objects.filter(
+                country = life_table.country,
+                year_updated = life_table.year_updated,
+                is_male = life_table.is_male,
+            ).order_by('age')
+
+            for entry in life_table_entries[::2]:
+                entry.delete()

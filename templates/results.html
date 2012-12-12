@@ -1,3 +1,4 @@
+{% load custom_filters %}
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -10,23 +11,39 @@
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main.css">
     </head>
     <body>
-        <p>{{life_data.country}}</p>
-        <p>{{life_data.year_updated}}</p>
+        <h1>Results</h1>
 
-        {% if life_data.is_male %}
-        <p>Male</p>
-        {% else %}
-        <p>Female</p>
-        {% endif %}
+        <div id="statistics">
+            <h2>Statistics</h2>
+            <ul>
+                <li>{{life_data.probability_of_death_before_next_birthday|multiply:100|floatformat:2}}%
+                probability of death before next birthday</li>
+                <li>{{life_data.remaining_years_left}} years left to live</li>
+                <li>{{percentage_life_left|multiply:100|floatformat:1}}% life
+                remaining</li>
+            </ul>
+        </div>
 
-        <p>Current age: {{life_data.age}}</p>
-        <p>Probability of death before next birthday:
-        {{life_data.probability_of_death_before_next_birthday}}</p>
-        <p>Years left: {{life_data.remaining_years_left}}</p>
+        <div id="estimates">
+            <h2>Estimates</h2>
+            <ul>
+                <li>{{days_remaining}} days left</li>
+                <li>{{die_date}} date of death</li>
+            </ul>
+        </div>
 
-        <p>Estimates:</p>
-        <p>Days Remaining: {{days_remaining}}</p>
-        <p>Est Date of Death: {{die_date}}</p>
+        <div id="sources">
+            <p>
+                Data provided by the 
+                {{life_data.year_updated}} {{life_data.country}} 
+                {% if life_data.is_male %}Male{% else %}Female{% endif %} 
+                Life Table from The Human Mortality Database
+            </p>
+        </div>
+
+        <div id="footer">
+            <a href="/">FAQ</a>
+        </div>
 
         <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
         <!-- <script type="text/javascript" src="{{STATIC_URL}}scripts/quote.js"></script> -->

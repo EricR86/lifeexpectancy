@@ -27,8 +27,17 @@ class LifeTableEntry(models.Model):
         if self.is_male:
             gender_string = "M"
 
-        string = self.country + ", " + str(self.year_updated) + ", " + gender_string + ", " + str(self.remaining_years_left)
+        string = self.country + ", " + str(self.year_updated) + ", " + \
+        gender_string + ", " + str(self.remaining_years_left) + ", "+ str(self.age)
+        
         return string
+
+    def get_gender_char(self):
+        gender_string = "F"
+        if self.is_male:
+            gender_string = "M"
+
+        return gender_string
 
 class LifeTableEntryAdmin(admin.ModelAdmin):
     list_display = ('country', 'year_updated', 'is_male', 'age')

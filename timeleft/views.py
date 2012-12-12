@@ -1,6 +1,7 @@
 from django.template import RequestContext
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
+from django.core import serializers
 
 #from models import LifeExpectancy
 from models import LifeTableEntry
@@ -52,15 +53,47 @@ def show_results(request, country, gender, birth_year, birth_month, birth_day):
     days_remaining = int(round(years_remaining * 365.242199))
     # Add to birthday
     die_date = birthday + timedelta(days=days_remaining)
+    #life_data.probability_of_death_before_next_birthday *= 100.0
 
     # Display results 
     context_dict['life_data'] = life_data
+    context_dict['percentage_life_left'] = sig_digits(
+        life_data.remaining_years_left / (age + life_data.remaining_years_left), 
+        3
+    )
     context_dict['days_remaining'] = days_remaining
     context_dict['die_date'] = die_date
     # (probability, remaining years left, rough days left,  rough est date of death)
     return render_to_response('results.html',
                               context_dict,
                               context_instance=RequestContext(request))
+
+def sig_digits(x, n):
+    if n < 1:
+        raise ValueError("number of significant digits must be >= 1")
+ 
+    # Use %e format to get the n most significant digits, as a string.
+    format = "%." + str(n-1) + "e"
+    r = format % x
+    return float(r)
+
+
+def list_countries(request):
+    # If this isn't an ajax request
+    # if request.is_ajax() == False:
+    #     # 404
+    #     raise Http404
+
+    # Otherwise
+    # Filter to a list of unique countries from our life tables
+    query = LifeTableEntry.objects.filter(
+            is_male = True, # Assume there's a female version for each country
+            age = 0, # Assume only 1 entry of age 0 for all countries
+    )
+    # Serialize results into a json object
+    json = serializers.serialize('json', query, fields=('country'))
+    # Return a json response containing a list of all potential countries
+    return HttpResponse(json, mimetype='application/json')
 
 
 #def life_calculation(request, country_code, year, month, day):
