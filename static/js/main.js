@@ -5,18 +5,6 @@ $(function () {
                 "June", "July", "August", "September", "October",
                 "November", "December"];
 
-    countries_request = $.ajax({
-         type: "GET",
-         url: "countries/",
-         dataType: "json",
-         // success : function(data) {
-         //      alert(data);
-         // }
-    }).done(function(data) {
-        for (var i = 0; i < data.length; i++) {
-            $("#country").append("<option>" + data[i].fields["country"] + "</option>");
-        }
-    });
 
      // countries_request.done(function(msg) {
      //    alert("done!", msg);
@@ -75,6 +63,7 @@ $(function () {
         }
         
         str = "/" + $("#country").val() +
+            "/" + $("#gender").val() +
             "/" + $("#birth_year").val() +
             "/" + (i + 1) +
             "/" + $("#birth_day").val() + "/";
@@ -84,10 +73,23 @@ $(function () {
     function update_birthday_url() {
         $("#results_link").attr("href", get_birthday_url());
     }
-    
-    update_birthday_url();
+
+    $.ajax({
+         type: "GET",
+         url: "countries/",
+         dataType: "json",
+         // success : function(data) {
+         //      alert(data);
+         // }
+    }).done(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            $("#country").append("<option>" + data[i].fields["country"] + "</option>");
+        }
+        update_birthday_url();
+    });
     
     $("#country").change(update_birthday_url);
+    $("#gender").change(update_birthday_url);
     $("#birth_day").change(update_birthday_url);
     $("#birth_month").change(update_birthday_url);
     $("#birth_year").change(update_birthday_url);

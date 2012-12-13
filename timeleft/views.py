@@ -33,7 +33,7 @@ def show_results(request, country, gender, birth_year, birth_month, birth_day):
         age -= 1
 
     gender = gender.capitalize()
-    country = country.capitalize()
+    country = country.title()
 
     # Lookup the projected life left based on country, gender, and age
     results = LifeTableEntry.objects.filter(
@@ -89,7 +89,7 @@ def list_countries(request):
     query = LifeTableEntry.objects.filter(
             is_male = True, # Assume there's a female version for each country
             age = 0, # Assume only 1 entry of age 0 for all countries
-    )
+    ).order_by('country')
     # Serialize results into a json object
     json = serializers.serialize('json', query, fields=('country'))
     # Return a json response containing a list of all potential countries
