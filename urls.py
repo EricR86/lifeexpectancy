@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^(?P<country>.*)/(?P<gender>[MmFf])/(?P<birth_year>\d+)/(?P<birth_month>\d+)/(?P<birth_day>\d+)/',
         'timeleft.views.show_results'),
     url(r'^countries/$', 'timeleft.views.list_countries'),
+    url(r'^faq/$', 'timeleft.views.faq'),
     #url(r'^(?P<country_code>\w+)/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/',
     #    'timeleft.views.life_calculation'),
 

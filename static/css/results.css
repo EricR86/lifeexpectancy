@@ -1,0 +1,48 @@
+#results {
+    margin-top: 40px;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #DFE2E1;
+}
+
+#results h1 {
+    padding-bottom: 12px;
+}
+
+#results h3 {
+    padding-left: 4px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+ul {
+    list-style: circle inside none;
+}
+
+li {
+    padding-left: 24px;
+}
+
+#statistics, #estimates {
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #DFE2E1;
+}
+
+.data {
+    font-weight: bold;
+}
+
+#sources {
+    text-align: center;
+    font-size: 12px;
+}
+
+#footer {
+    text-align: center;
+    font-size: 12px;
+
+    padding-top: 12px;
+}

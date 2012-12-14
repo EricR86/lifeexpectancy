@@ -1,0 +1,14 @@
+#title {
+    margin-top: 40px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #DFE2E1;
+}    
+
+.letter_q, .letter_a {
+    font-style: bold;
+    font-size: 24px;
+}
+
+.answer {
+    margin-bottom: 24px;
+}

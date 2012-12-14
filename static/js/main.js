@@ -18,7 +18,7 @@ $(function () {
         var str = "",
             today = new Date(),
             newest_year = today.getFullYear(),
-            num_years = 112,
+            num_years = 110,
             current_year = newest_year;
         
         while (num_years >= 0) {

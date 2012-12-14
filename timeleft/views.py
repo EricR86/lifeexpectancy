@@ -17,6 +17,13 @@ def main(request):
                               context_dict,
                               context_instance=RequestContext(request))
 
+def faq(request):
+    context_dict = {}
+
+    return render_to_response('faq.html',
+                              context_dict,
+                              context_instance=RequestContext(request))
+
 
 def show_results(request, country, gender, birth_year, birth_month, birth_day):
     context_dict = {}
@@ -50,15 +57,19 @@ def show_results(request, country, gender, birth_year, birth_month, birth_day):
     # Calculate the est date of death from years remaining past the birthday
     # Get years remaining and covert into days remaining
     years_remaining = life_data.remaining_years_left
-    days_remaining = int(round(years_remaining * 365.242199))
-    # Add to birthday
-    die_date = birthday + timedelta(days=days_remaining)
+    # Calcuate predicted total living days
+    predicted_total_living_days = int(round((age+years_remaining) * 365.242199))
+    # Get predicted die date by adding the predicted total living days to the
+    # birthday
+    die_date = birthday + timedelta(days=predicted_total_living_days)
+    days_remaining = (die_date - today).days
     #life_data.probability_of_death_before_next_birthday *= 100.0
 
     # Display results 
     context_dict['life_data'] = life_data
     context_dict['percentage_life_left'] = sig_digits(
-        life_data.remaining_years_left / (age + life_data.remaining_years_left), 
+        #life_data.remaining_years_left / (age + life_data.remaining_years_left), 
+        float(days_remaining)/float(predicted_total_living_days),
         3
     )
     context_dict['days_remaining'] = days_remaining

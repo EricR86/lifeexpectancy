@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Life Expectancy Calculator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Calculates your life left based on average life expectancy values" />
+        <meta name="keywords" content="life expectancy,life,life left,expectancy,mortality" >
+        
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shared.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/faq.css">
+    </head>
+    <body>
+        <h1 id="title">FAQ</h1>
+        <div class="question_section">
+            <p class="question">
+                <span class="letter_q">Q.</span>
+                How accurate is this site?
+            </p>
+            <p class="answer">
+                <span class="letter_a">A.</span>
+                This site does not claim to be accurate or precise in any way.
+                It does not, for example, take into account any personal healh
+                attributes into consideration. The information displayed
+                is available from 
+                <a href="http://en.wikipedia.org/wiki/Life_Table">Life Tables</a> 
+                provided by
+                <a href="http://mortality.org/">The Human Mortality Database</a>
+                and also performs <em>extremely</em> rough estimates based on
+                those values.
+            </p>
+            <p class="question">
+                <span class="letter_q">Q.</span>
+                How do you come up with those estimates?
+            </p>
+            <p class="answer">
+                <span class="letter_a">A.</span>
+                Given the values from the Life Table there's an assumption that
+                there's roughly 365.25 days in a year (accounting for leap
+                years) and it simply counts the days from the years given by the 
+                Life Table.
+            </p>
+            <p class="question">
+                <span class="letter_q">Q.</span>
+                On my birthday my numbers suddenly changed! What happened?
+            </p>
+            <p class="answer">
+                <span class="letter_a">A.</span>
+                Statistically, probabilities of death fluctuate based on age
+                according to the Life Table. For example, newborns are
+                generally at a significantly higher risk than 1 year olds.
+                Based on your new current age you get a different probability 
+                and therefore different statistics and estimates.
+            </p>
+            <p class="question">
+                <span class="letter_q">Q</span>
+                I want to look up ages that are even older than what I can pick
+                here!
+            </p>
+            <p class="answer">
+                <span class="letter_a">A.</span>
+                Most Life Tables do not have significant information past 110
+                years of age and therefore are generally grouped up as 110+.
+                110 years old is as old as you can pick.
+            </p>
+        </div>
+        <a id="main" href="/">Return to main page</a>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="{{STATIC_URL}}js/main.js"></script>
+
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="{{STATIC_URL}}scripts/quote.js"></script> -->
+
+    </body>
+</html>

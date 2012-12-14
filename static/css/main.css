@@ -1,0 +1,50 @@
+#title {
+    text-align: center;
+
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+#user_info form {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#user_info form label {
+    padding-left: 0.5em;
+}
+
+#results_link {
+    display: block;
+    text-align: center;
+    width: 70px;
+    margin: 0 auto;
+
+    padding: 8px 30px 8px 32px;
+    color: white;
+    background: #53D8EF;
+    /* css 3 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#C2F2F9), to(#53D8EF)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #C2F2F9,  #53D8EF); /* for firefox 3.6+ */
+    
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 -1px #00AEC9;
+    white-space: nowrap;
+}
+
+#notice {
+    text-align: center;
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+#faq {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+}

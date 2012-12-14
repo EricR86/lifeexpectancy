@@ -7,29 +7,34 @@
         <meta name="keywords" content="life expectancy,life,life left,expectancy,mortality" >
         
         <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shared.css">
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
     </head>
     <body>
-        <h1>Life expectancy calculator</h1>
+        <h1 id="title">Life Expectancy Calculator</h1>
         <!-- See http://dev.umpirsky.com/list-of-all-countries-in-all-languages-and-all-data-formats/ -->
-        <form action="/" method="post">
-            <label>Country of Birth</label>
-            <select id="country">
-            </select>
-            <label>Gender</label>
-            <select id="gender">
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-            <label>Date of Birth</label>
-            <select id="birth_day">
-            </select>
-            <select id="birth_month">
-            </select>
-            <select id="birth_year">
-            </select>
-        </form>
+        <div id="user_info">
+            <form action="/" method="post">
+                <label>Country</label>
+                <select id="country">
+                </select>
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <label>Birthday</label>
+                <select id="birth_day">
+                </select>
+                <select id="birth_month">
+                </select>
+                <select id="birth_year">
+                </select>
+            </form>
+        </div>
         <a id="results_link" href="">Calculate</a>
+        <p id="notice">No personal information is stored on this site</p>
+        <a id="faq" href="/faq/">FAQ</a>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="{{STATIC_URL}}js/main.js"></script>
